@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+<!-- thymeleaf 메뉴를 가지고 온다.. -->
+<div  th:replace="~{ nav.html::navbar}"></div>
+
+<form method="post" action="/edit/{id}">
+    <input name="id" th:value = "${item.id}" style="display:none">
+    <input name="username" th:value="${#authentication.principal.username}" style="display:none" >
+    <input name="title" th:value = "${item.title}">
+    <input name="price" th:value = "${item.price}">
+    <button type="submit">전송</button>
+</form>
+
+</body>
+</html>

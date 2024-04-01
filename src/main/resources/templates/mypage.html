@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+<div  th:replace="~{ nav.html::navbar}"></div>
+
+<!--&lt;!&ndash; 로그인한 사용자의 정보를 확인한다. &ndash;&gt;-->
+<!--<div sec:authetication="principal">-->
+<!--    &lt;!&ndash;  안에 있는 권한이 존재 시 사람만 html을 보여준다.  &ndash;&gt;-->
+<!--    <div sec:authorize="hasAuthority('일반유저')"></div>-->
+<!--    <h4> 이 유저는 일반유저 권한</h4>-->
+<!--    &lt;!&ndash; authorize="isAuthenticated" 로그인한 사람만 html 보여준다. isAnonymous()는 로그아웃&ndash;&gt;-->
+<!--    <div sec:authorize="principal.username"></div>-->
+<!--</div>-->
+
+</body>
+</html>

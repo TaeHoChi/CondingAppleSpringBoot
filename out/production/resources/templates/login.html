@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<h1>Login</h1>
+
+<!-- 현재 URL의 쿼리 스트링을 넣음, 쿼리에 error가 나오면 아래 문구를 넣는다. -->
+<div th:if="${param.error}">
+    <h4>아이디나 비번 틀림</h4>
+</div>
+
+<form method="POST" action="/login">
+    <div>
+        <h4>Username</h4>
+        <input name="username" placeholder="Username">
+    </div>
+    <div>
+        <h4>Password</h4>
+        <input name="password" placeholder="Password" type="password">
+    </div>
+    <button type="submit">로그인</button>
+</form>
+</body>
+</html>

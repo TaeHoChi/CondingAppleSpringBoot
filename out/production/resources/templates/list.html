@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+<div  th:replace="~{ nav.html::navbar}"></div>
+<div th:if="${param.error}">
+    <script>alert("로그인을 먼저 해주세요")</script>
+</div>
+<!-- items 안에 있는 데이터들을 for문 처럼 사용할 수 있다. -->
+<div class="card" th:each="item : ${items}">
+    <img src="https://placehold.co/300">
+    <div>
+        <a th:href="@{'/detail/' + ${item.id}}">
+            <h4 th:text="${item.title}"></h4>
+
+        </a>
+        <a th:text="${item.username}" ></a>
+        <p th:text="${item.price}"></p>
+        <a th:href="@{'/edit/' + ${item.id}}" >수정</a>
+        <button type="button" class="btn" th:data-item-id="${item.id}" >삭제</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // 모든 삭제 버튼에 대한 참조를 가져옵니다.
+        const deleteButtons = document.querySelectorAll('.btn');
+
+        // 각 삭제 버튼에 이벤트 리스너를 등록합니다.
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                // 클릭된 버튼에서 data-item-id 속성을 읽어옵니다.
+                const itemId = event.target.getAttribute("data-item-id");
+
+                // DELETE 요청을 보냅니다.
+                fetch(`/delete/${itemId}`, {
+                    method: 'DELETE',
+                }).then(response => response.text()).then(() => {
+                    location.reload(); // 페이지를 새로고침하여 변경사항을 반영합니다.
+                });
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
